@@ -5,7 +5,7 @@ inputs:
   file_glob:
     required: true
     description: The pattern describing the file paths to lint with Spectral
-    default: '*.oas.{json,yml,yaml}'
+    default: 'openapi.{json,yml,yaml}'
   spectral_ruleset:
     required: false
     description: |

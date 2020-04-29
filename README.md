@@ -1,8 +1,8 @@
 # Spectral Linter Action
 
-This action uses [Spectral](https://github.com/stoplightio/spectral) from [Stoplight](https://stoplight.io/) to lint your OpenAPI documents, or any other JSON/YAML files.
+This action uses [Spectral](https://github.com/stoplightio/spectral) from [Stoplight](https://stoplight.io/) to lint OpenAPI/AsyncAPI documents, or any other JSON/YAML files.
 
-![](./image.png)
+![](./assets/image.png)
 
 ## Usage
 
@@ -23,14 +23,14 @@ jobs:
       - uses: actions/checkout@v2
 
       # Run Spectral
-      - uses: stoplightio/spectral-action@v0.5.5
+      - uses: stoplightio/spectral-action@master
         with:
-          file_glob: 'doc/api/*.yaml'
+          file_glob: 'api/*.yaml'
 ```
 
 ### Inputs
 
-- **file_glob:** Pattern describing the set of files to lint. Defaults to `*.oas.{json,yml,yaml}`. (_Note:_ Pattern syntax is documented in the [fast-glob](https://www.npmjs.com/package/fast-glob) package documentation)
+- **file_glob:** Pattern describing the set of files to lint. Defaults to `openapi.{json,yml,yaml}`. (_Note:_ Pattern syntax is documented in the [fast-glob](https://www.npmjs.com/package/fast-glob) package documentation)
 - **spectral_ruleset:** Custom ruleset to load in Spectral. When unspecified, will try to load the default `.spectral.yaml` ruleset if it exists; otherwise, the default built-in Spectral rulesets will be loaded.
 
 ## Configuration
