@@ -1,15 +1,17 @@
-# Spectral Linter Action
+# Italian API Guidelines linter
 
-This action uses [Spectral](https://github.com/stoplightio/spectral) from [Stoplight](https://stoplight.io/) to lint your OpenAPI documents, or any other JSON/YAML files.
+This action lints your OAS3+ API specifiction files checking for Italian API Guidelines.
 
-![](./image.png)
+Rules are retrieved from [api-oas-checker](https://teamdigitale.github.io/api-oas-checker/spectral.yml)
+
+Currently, this project is based on the opensource [Spectral](https://github.com/stoplightio/spectral) linter.
 
 ## Usage
 
 See [action.yml](action.yml)
 
 ```yaml
-name: Run Spectral on Pull Requests
+name: Run Spectral API checker on Pull Requests
 
 on:
   - pull_request
@@ -22,17 +24,20 @@ jobs:
       # Check out the repository
       - uses: actions/checkout@v2
 
-      # Run Spectral
-      - uses: stoplightio/spectral-action@v0.5.5
+      - name: API Guidelines linter - beta
+        uses: ioggstream/api-oas-checker-action@v0.6.2-italia
         with:
-          file_glob: 'doc/api/*.yaml'
+          # The pattern describing the file paths to lint with Spectral
+          file_glob: 'openapi/*.yaml'
+
 ```
 
 ### Inputs
 
 - **file_glob:** Pattern describing the set of files to lint. Defaults to `*.oas.{json,yml,yaml}`. (_Note:_ Pattern syntax is documented in the [fast-glob](https://www.npmjs.com/package/fast-glob) package documentation)
-- **spectral_ruleset:** Custom ruleset to load in Spectral. When unspecified, will try to load the default `.spectral.yaml` ruleset if it exists; otherwise, the default built-in Spectral rulesets will be loaded.
+
+- **spectral_ruleset:** By default it will point to  the latest Italian Guidelines spectral.yml. You can reference a tagged version though.
 
 ## Configuration
 
-Spectral Action will respect your [Spectral Rulesets](https://stoplight.io/p/docs/gh/stoplightio/spectral/docs/getting-started/rulesets.md), which can be defined, extended, and overriden by placing `.spectral.yml` in the root of your repository.
+If you need a more fine-grained configuration, consider writing your own action or implement your linting pipeline reusing the components provided here and in  [api-oas-checker](https://teamdigitale.github.io/api-oas-checker/spectral.yml)

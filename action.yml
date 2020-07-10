@@ -14,6 +14,7 @@ inputs:
     default: https://teamdigitale.github.io/api-oas-checker/spectral.yml
     description: |
       By default, the Italian API Guidelines rules are loaded.
+
       If you are uncomfortable with the latest rules, you can reference a tagged version.
       When unspecified, will try to load the default `.spectral.yaml` ruleset if it exists.
       Otherwise, the default built-in Spectral rulesets will be loaded.
