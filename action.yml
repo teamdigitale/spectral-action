@@ -1,7 +1,7 @@
 #
 # Based on Spectral Action by Vincenzo Chianese.
 #
-name: Italian API Guidelines - Spectral Linting
+name: API Guidelines linter - beta
 author: Roberto Polli
 description: Lint your API specification using Italian API Guidelines and Spectral
 inputs:
