@@ -1,6 +1,9 @@
-name: Spectral Linting
-author: Vincenzo Chianese
-description: Lint your files with Spectral
+#
+# Based on Spectral Action by Vincenzo Chianese.
+#
+name: Italian API Guidelines - Spectral Linting
+author: Roberto Polli
+description: Lint your API specification using Italian API Guidelines and Spectral
 inputs:
   file_glob:
     required: true
@@ -8,16 +11,16 @@ inputs:
     default: '*.oas.{json,yml,yaml}'
   spectral_ruleset:
     required: false
+    default: https://teamdigitale.github.io/api-oas-checker/spectral.yml
     description: |
-      Custom ruleset to load in Spectral.
-
+      By default, the Italian API Guidelines rules are loaded.
+      If you are uncomfortable with the latest rules, you can reference a tagged version.
       When unspecified, will try to load the default `.spectral.yaml` ruleset if it exists.
       Otherwise, the default built-in Spectral rulesets will be loaded.
   repo_token:
     required: true
     description: |
       The GitHub App installation access token.
-
       [Learn more about `GITHUB_TOKEN`](https://help.github.com/en/actions/configuring-and-managing-workflows/authenticating-with-the-github_token#about-the-github_token-secret)
     default: ${{ github.token }}
   event_name:
