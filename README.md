@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: API Guidelines linter - beta
-        uses: ioggstream/api-oas-checker-action@v0.6.2-italia
+        uses: ioggstream/api-oas-checker-action@v0.6.4-italia
         with:
           # The pattern describing the file paths to lint with Spectral
           file_glob: 'openapi/*.yaml'
