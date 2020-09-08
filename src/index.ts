@@ -15,10 +15,10 @@ import * as IO from 'fp-ts/lib/IO';
 import * as TE from 'fp-ts/lib/TaskEither';
 import * as T from 'fp-ts/lib/Task';
 import * as E from 'fp-ts/lib/Either';
-import { draw } from 'io-ts/lib/Tree';
+import { draw } from 'io-ts/lib/Decoder';
 import { pipe } from 'fp-ts/lib/pipeable';
 import { identity } from 'lodash';
-import { ChecksUpdateParamsOutputAnnotations } from '@octokit/rest';
+import { Octokit } from '@octokit/rest';
 import * as path from 'path';
 
 const CHECK_NAME = 'Lint';
@@ -49,8 +49,8 @@ const createSpectralAnnotations = (ruleset: string, parsed: fileWithContent[], b
     TE.map(results =>
       flatten(
         results.map(validationResult => {
-          return validationResult.results.map<ChecksUpdateParamsOutputAnnotations>(vl => {
-            const annotation_level: ChecksUpdateParamsOutputAnnotations['annotation_level'] =
+          return validationResult.results.map<Octokit.ChecksUpdateParamsOutputAnnotations>(vl => {
+            const annotation_level: Octokit.ChecksUpdateParamsOutputAnnotations['annotation_level'] =
               vl.severity === DiagnosticSeverity.Error
                 ? 'failure'
                 : vl.severity === DiagnosticSeverity.Warning
