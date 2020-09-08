@@ -2,9 +2,9 @@ import { GitHub } from '@actions/github';
 import * as TE from 'fp-ts/lib/TaskEither';
 import * as E from 'fp-ts/lib/Either';
 import * as D from 'io-ts/lib/Decoder';
-import { draw } from 'io-ts/lib/Tree';
+import { draw } from 'io-ts/lib/Decoder';
 import { Do } from 'fp-ts-contrib/lib/Do';
-import { ChecksCreateResponse, ChecksUpdateParamsOutputAnnotations, ChecksUpdateParams, Response } from '@octokit/rest';
+import { Octokit } from '@octokit/rest';
 import { pipe } from 'fp-ts/lib/pipeable';
 
 const EventDecoder = D.type({
@@ -81,10 +81,10 @@ export const getRepositoryInfoFromEvent = (eventPath: string, eventName: string)
 
 export const updateGithubCheck = (
   octokit: GitHub,
-  check: Response<ChecksCreateResponse>,
+  check: Octokit.Response<Octokit.ChecksCreateResponse>,
   event: IRepositoryInfo,
-  annotations: ChecksUpdateParamsOutputAnnotations[],
-  conclusion: ChecksUpdateParams['conclusion'],
+  annotations: Octokit.ChecksUpdateParamsOutputAnnotations[],
+  conclusion: Octokit.ChecksUpdateParams['conclusion'],
   message?: string
 ) =>
   TE.tryCatch(
