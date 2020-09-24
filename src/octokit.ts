@@ -42,9 +42,10 @@ export interface IRepositoryInfo {
 }
 
 const extractSha = (eventName: string, event: any): E.Either<Error, string> => {
+  console.log(`Processing ${eventName}: ${JSON.stringify(event)}`);
   switch (eventName) {
     case 'pull_request':
-      return E.right(event.pull_request.head.sha);
+      return E.right(event.after);
     case 'push':
       return E.right(event.after);
     default:
